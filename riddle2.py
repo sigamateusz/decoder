@@ -5,10 +5,8 @@ KEY = ('ERRORSQUAD')
 
 def content_to_list(data_file_name):
     """Creates string with content from file"""
-    content = []
     with open(data_file_name, 'r') as f:
-        content = f.read()
-    content = content.upper()
+        content = f.read().upper()
     return content
 
 
@@ -23,18 +21,15 @@ def matrix():
 a = matrix()
 
 
-def decored(text, KEY):
+def decoded(text, KEY):
     while len(KEY) < len(text):
         KEY += KEY
-    text = text.upper()
     num = len(text)
     i = 0
     j = 0
     while i < num:
-        if text[i] == ' ':
-            print(' ', end='')
-        elif text[i] == '\n':
-            print('')
+        if not text[i].isalpha():
+            print(text[i], end='')
         else:
             kol = a[0].index(KEY[j])
             for n in range(26):
@@ -46,4 +41,4 @@ def decored(text, KEY):
 
 
 con = content_to_list('text2.txt')
-decored(con, KEY)
+decoded(con, KEY)
