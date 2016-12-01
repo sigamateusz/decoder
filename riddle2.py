@@ -1,7 +1,5 @@
 import string
 
-KEY = ('ERRORSQUAD')
-
 
 def content_to_list(data_file_name):
     """Creates string with content from file"""
@@ -11,6 +9,7 @@ def content_to_list(data_file_name):
 
 
 def matrix():
+    """Creates list with lists of alphabet"""
     alpha = list(string.ascii_uppercase)
     a = []
     n = 0
@@ -18,10 +17,9 @@ def matrix():
         a.append(alpha[n:] + alpha[:n])
         n += 1
     return a
-a = matrix()
 
 
-def decoded(text, KEY):
+def decoded(text, KEY, alphabet):
     while len(KEY) < len(text):
         KEY += KEY
     num = len(text)
@@ -31,14 +29,21 @@ def decoded(text, KEY):
         if not text[i].isalpha():
             print(text[i], end='')
         else:
-            kol = a[0].index(KEY[j])
+            kol = alphabet[0].index(KEY[j])
             for n in range(26):
-                if a[n][kol] == text[i]:
+                if alphabet[n][kol] == text[i]:
                     row = n
                     j += 1
-                    print(a[row][0], end='')
+                    print(alphabet[row][0], end='')
         i += 1
 
 
-con = content_to_list('text2.txt')
-decoded(con, KEY)
+def main():
+    KEY = ('ERRORSQUAD')
+    alphabet = matrix()
+    content = content_to_list('text2.txt')
+    decoded(content, KEY, alphabet)
+
+
+if __name__ == '__main__':
+    main()
