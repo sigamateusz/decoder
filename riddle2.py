@@ -11,12 +11,12 @@ def content_to_list(data_file_name):
 def matrix():
     """Creates list with lists of alphabet"""
     alpha = list(string.ascii_uppercase)
-    a = []
+    matrix = []
     n = 0
     while n < len(alpha):
-        a.append(alpha[n:] + alpha[:n])
+        matrix.append(alpha[n:] + alpha[:n])
         n += 1
-    return a
+    return matrix
 
 
 def decoded(text, KEY, alphabet):
